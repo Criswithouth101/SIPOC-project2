@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New support ticket</title>
+  </head>
+  <body>
+    <h1>Create a ticket!</h1>
+  <form action="/tickets" method="POST">
+    <label for="escalationId"> Escalation ID:</label>
+    <input type="number" name="escalationId" id="escalationId" />
+
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" id="subject" />
+
+     <label for="description">Description:</label>
+    <input type="text" name="description" id="description" />
+
+    <label for="customerEmail">Customer Email:</label>
+    <input type="text" name="customerEmail" id="customerEmail" />
+
+    <label for="cpoName">CPO name:</label>
+    <input type="text" name="cpoName" id="cpoName" />
+
+    <label for="city">City:</label>
+    <input type="text" name="city" id="city" />
+
+    <label for="country">Country:</label>
+    <input type="text" name="country" id="country" />
+
+     <label for="priority">Priority:</label>
+    <input type="number" name="priority" id="priority" />
+
+    <label for="status">Status:</label>
+    <input type="text" name="status" id="status" />
+
+    <label for="createdAt">Creation date:</label>
+    <input type="datetime" name="createdAt" id="createdAt" />
+
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand" id="brand" />
+
+    <label for="allowedContact">Can the customer be contacted?</label>
+    <input type="checkbox" name="allowedContact" id="allowedContact" />
+
+    <label for="assignedTo"> Assigned to:</label>
+    <input type="reference" name="Assigned to" id="Assigned to" />
+
+    <button type="submit">Add ticket</button>
+
+  </form>
+</body>
+</html>
