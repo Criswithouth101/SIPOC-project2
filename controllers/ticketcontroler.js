@@ -13,6 +13,13 @@ router.get("/new", async (req, res, next) => {
     }
 });
 
+// GET /tickets index page
+router.get("/", async (req, res) => {
+  const allTickets = await Ticket.find();
+  console.log("get works", allTickets); 
+  res.render("tickets/index.ejs", { tickets: allTickets });
+});
+
 // POST New tickets
 router.post("/", async (req, res) => {
   try {
@@ -43,6 +50,11 @@ router.post("/", async (req, res) => {
     console.error("Error creating ticket:", error);
     res.status(500).send("Something went wrong while creating the ticket.");
   }
+});
+
+router.get("/:ticketId", async (req, res) => {
+  const foundTicket = await Ticket.findById(req.params.ticketId);
+res.render("tickets/show.ejs", { ticket: foundTicket});
 });
 
 module.exports = router

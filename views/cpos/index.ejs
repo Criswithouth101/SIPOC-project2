@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPO Index</title>
+    <a href="/tickets">Browse Tickets</a>
+    <a href="/tickets/new">Add New Ticket</a>
+    <a href="/cpos/">Back to CPOs</a>
+  </head>
+  <body>
+    <h1>All CPOs partners listed</h1>
+  <ul>
+    <% cpos.forEach(cpo => { %>
+      <li><a href="/cpos/<%= cpo._id %>"><%= cpo.cpoName %></a></li>
+    <% }); %>
+  </ul>
+
+  </body>
+</html>

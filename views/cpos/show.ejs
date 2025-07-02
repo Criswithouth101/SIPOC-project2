@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= cpo.cpoName %></title> 
+    <a href="/cpos/">Back to CPOs</a>
+  </head>
+  <body>
+    <h1><%= cpo.cpoName %></h1> 
+    <p><%= cpo.contactEmail %></p> 
+    <% if (cpo.hasSla) { %>
+    <p>This partner has an active SLA</p>
+  <% } else { %>
+    <p>This partner doesn't have an SLA.</p>
+  <% } %>
+    <p><%= cpo.city %></p>
+    <p><%= cpo.country %></p>
+    <p><%= cpo.country %></p>
+    <p>Tickets tagged to <%= cpo.cpoName %></p>
+    <ul>
+     <% if (tickets.length > 0) { %>
+      <% tickets.forEach(ticket => { %>
+        <li>
+          <strong><%= ticket.subject %></strong> — <%= ticket.status %><br>
+          <small><%= ticket.description %></small>
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li>No tickets found for this CPO.</li>
+    <% } %>
+    </ul>
+  </body>
+</html>

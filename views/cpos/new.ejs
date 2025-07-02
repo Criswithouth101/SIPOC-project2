@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New CPO (Charging Point Operator)</title>
+  </head>
+  <body>
+    <h1>Add a new partner!</h1>
+  <form action="/cpos" method="POST">
+    <label for="cpoName"> CPO Name:</label>
+    <input type="text" name="cpoName" id="cpoName" />
+
+    <label for="contactEmail">Contact Email:</label>
+    <input type="text" name="contactEmail" id="contactEmail" />
+
+    <label for="hasSla">Does this partner has an SLA?</label>
+    <input type="checkbox" name="hasSla" id="hasSla" />
+
+    <label for="city">City:</label>
+    <input type="text" name="city" id="city" />
+
+    <label for="country">Country:</label>
+    <input type="text" name="country" id="country" />
+
+    <button type="submit">Add partner</button>
+
+  </form>
+</body>
+</html>

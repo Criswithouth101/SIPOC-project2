@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= ticket.subject %></title> 
+    <a href="/tickets/">Back to Tickets</a>
+  </head>
+  <body>
+    <h1><%= ticket.subject %></h1> 
+    <p><%= ticket.escalationId %></p> 
+    <p><%= ticket.description %></p> 
+    <p><%= ticket.customerEmail %></p>
+    <p><%= ticket.cpos %></p>
+    <p><%= ticket.city %></p>
+    <p><%= ticket.country %></p>
+    <p><%= ticket.priority %></p> 
+    <p><%= ticket.status %></p>
+    <p><%= ticket.createdAt %></p>
+    <p><%= ticket.brand %></p>
+    <p><%= ticket.assignedTo %></p>
+    
+ <% if (ticket.allowedContact) { %>
+    <p>This customer has accepted to be contacted again</p>
+  <% } else { %>
+    <p>Do no contact the customer.</p>
+  <% } %>
+       
+  </body>
+</html>

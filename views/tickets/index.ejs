@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tickets Index</title>
+    <a href="/tickets">Browse Tickets</a>
+    <a href="/tickets/new">Add New Ticket</a>
+    <a href="/tickets/">Back to Tickets</a>
+  </head>
+  <body>
+    <h1>All Tickets</h1>
+  <ul>
+    <% tickets.forEach(ticket => { %>
+      <li><a href="/tickets/<%= ticket._id %>"><%= ticket.subject %></a></li>
+    <% }); %>
+  </ul>
+
+  </body>
+</html>
