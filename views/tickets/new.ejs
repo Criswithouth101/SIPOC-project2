@@ -21,7 +21,11 @@
     <input type="text" name="customerEmail" id="customerEmail" />
 
     <label for="cpoName">CPO name:</label>
-    <input type="text" name="cpoName" id="cpoName" />
+    <select  name="cpoName" id="cpoName" >
+    <% cpos.forEach(cpo => { %>
+      <option><%= cpo.cpoName %></option> 
+    <% }) %>
+    </select>
 
     <label for="city">City:</label>
     <input type="text" name="city" id="city" />
