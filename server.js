@@ -4,22 +4,30 @@ const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const morgan = require("morgan");
+const path = require("path");
+
 const cpocontroller = require('./controllers/cpocontroler.js');
 const ticketcontroler = require('./controllers/ticketcontroler.js');
+const authController = require("./controllers/auth.js");
+
 const Ticket = require("./models/ticket.js");
 const Cpo = require("./models/cpo.js");
 
 const app = express();
+
+const port = process.env.PORT ? process.env.PORT : "3000";
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('connected', () => {
     console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
 });
 
-
 app.use(express.urlencoded({ extended: false }));
+app.use("/auth", authController);
 app.use(methodOverride("_method"));
 app.use(morgan("dev")); 
+
+ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/cpos",cpocontroller);
 app.use("/tickets", ticketcontroler);
