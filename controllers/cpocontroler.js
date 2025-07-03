@@ -62,4 +62,33 @@ const tickets = await Ticket.find({ cpoName });
 res.render("cpos/show.ejs", { cpo: foundCpo, tickets });
 });
 
+//Delete CPO
+router.delete("/:cpoId", async (req, res) => {
+  await Cpo.findByIdAndDelete(req.params.cpoId);
+  res.redirect("/cpos");
+  console.log("DELETE works for cpo ")
+});
+
+//GET editing a partner cpo
+router.get("/:cpoId/edit", async (req, res) => {
+  const foundCpo = await Cpo.findById(req.params.cpoId);
+  res.render("cpos/edit.ejs", {cpo: foundCpo});
+});
+
+
+// Update the partner
+
+router.put("/:cpoId", async (req, res) => {
+  
+  if (req.body.hasSla === "on") {
+    req.body.hasSla = true;
+  } else {
+    req.body.hasSla = false;
+  }
+  
+  await Cpo.findByIdAndUpdate(req.params.cpoId, req.body);
+
+  res.redirect(`/cpos/${req.params.cpoId}`);
+});
+
 module.exports= router

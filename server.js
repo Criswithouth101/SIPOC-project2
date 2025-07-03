@@ -2,6 +2,8 @@ const dotenv = require('dotenv');
 dotenv.config(); 
 const express = require('express');
 const mongoose = require('mongoose');
+const methodOverride = require("method-override");
+const morgan = require("morgan");
 const cpocontroller = require('./controllers/cpocontroler.js');
 const ticketcontroler = require('./controllers/ticketcontroler.js');
 const Ticket = require("./models/ticket.js");
@@ -16,6 +18,8 @@ mongoose.connection.on('connected', () => {
 
 
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+app.use(morgan("dev")); 
 
 app.use("/cpos",cpocontroller);
 app.use("/tickets", ticketcontroler);

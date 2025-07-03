@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New support ticket</title>
+    <a href="/tickets/">Back to Tickets</a>
+  </head>
+  <body>
+    <h1>Editing the ticket</h1>
+  <form action="/tickets/<%=ticket._id%>?_method=PUT" method="POST">
+
+    <label for="escalationId"> Escalation ID:</label>
+    <input type="number" name="escalationId" value="<%= ticket.escalationId %>" />
+
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" value="<%= ticket.subject %>" />
+
+     <label for="description">Description:</label>
+    <input type="text" name="description" value="<%= ticket.description %>" />
+
+    <label for="customerEmail">Customer Email:</label>
+    <input type="text" name="customerEmail" value="<%= ticket.customerEmail %>" />
+
+    <label for="cpoName">CPO name:</label>
+    <select  name="cpoName" id="cpoName" >
+    <% cpos.forEach(cpo => { %>
+      <option><%= cpo.cpoName %></option> 
+    <% }) %>
+    </select>
+
+    <label for="city">City:</label>
+    <input type="text" name="city" value="<%= ticket.city %>" />
+
+    <label for="country">Country:</label>
+    <input type="text" name="country" value="<%= ticket.country %>" />
+
+     <label for="priority">Priority:</label>
+    <input type="number" name="priority" value="<%= ticket.priority %>" />
+
+    <label for="status">Status:</label>
+    <input type="text" name="status" value="<%= ticket.status %>" />
+
+    <label for="createdAt">Creation date:</label>
+    <input type="datetime" name="createdAt" value="<%= ticket.createdAt %>" />
+
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand" value="<%= ticket.brand %>" />
+
+    <label for="allowedContact">Can the customer be contacted?</label>
+    <input type="checkbox" name="allowedContact" <% if (ticket.allowedContact) { %>checked<% } %> />
+
+    <label for="assignedTo"> Assigned to:</label>
+    <input type="reference" name="Assigned to" value="<%= ticket.assignedTo %>" />
+
+    <button type="submit">Save edited ticket</button>
+
+  </form>
+</body>
+</html>

@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1><%= cpo.cpoName %></h1> 
+    <a href="/cpos/<%= cpo._id %>/edit">Edit partner information "<%= cpo.cpoName %>"</a>
     <p><%= cpo.contactEmail %></p> 
     <% if (cpo.hasSla) { %>
     <p>This partner has an active SLA</p>
@@ -29,5 +30,8 @@
       <li>No tickets found for this CPO.</li>
     <% } %>
     </ul>
+    <form action="/cpos/<%=cpo._id%>?_method=DELETE" method="POST">
+  <button type="submit">Delete CPO Partner</button>
+</form>
   </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New CPO (Charging Point Operator)</title>
+    <a href="/cpos/">Back to CPOs</a>
+  </head>
+  <body>
+    <h1>Edit the partner</h1>
+    <form action="/cpos/<%=cpo._id%>?_method=PUT" method="POST"></form>
+
+    <label for="cpoName"> CPO Name:</label>
+    <input type="text" name="cpoName" value="<%= cpo.cpoName %>" />
+
+    <label for="contactEmail">Contact Email:</label>
+    <input type="text" name="contactEmail" value="<%= cpo.contactEmail %>"/>
+
+    <label for="hasSla">Does this partner has an SLA?</label>
+    <input type="checkbox" name="hasSla" <% if (ticket.hasSla) { %>checked<% } %>/>
+
+    <label for="city">City:</label>
+    <input type="text" name="city" value="<%= cpo.city %>" />
+
+    <label for="country">Country:</label>
+    <input type="text" name="country" value="<%= cpo.country %>" />
+
+    <button type="submit">Save partner editing</button>
+
+  </form>
+</body>
+</html>

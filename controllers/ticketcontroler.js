@@ -52,9 +52,40 @@ router.post("/", async (req, res) => {
   }
 });
 
+// GET see each ticket 
 router.get("/:ticketId", async (req, res) => {
   const foundTicket = await Ticket.findById(req.params.ticketId);
 res.render("tickets/show.ejs", { ticket: foundTicket});
 });
+
+//Delete ticket 
+router.delete("/:ticketId", async (req, res) => {
+  await Ticket.findByIdAndDelete(req.params.ticketId);
+  res.redirect("/tickets");
+  console.log("DELETE works for tickets")
+});
+
+//GET editing a ticket
+router.get("/:ticketId/edit", async (req, res) => {
+  const foundTicket = await Ticket.findById(req.params.ticketId);
+  const cpos = await Cpo.find({});
+  res.render("tickets/edit.ejs", {ticket: foundTicket, cpos});
+});
+
+// Update tickets 
+
+router.put("/:ticketId", async (req, res) => {
+  
+  if (req.body.allowedContact === "on") {
+    req.body.allowedContact = true;
+  } else {
+    req.body.allowedContact = false;
+  }
+  
+  await Ticket.findByIdAndUpdate(req.params.ticketId, req.body);
+
+  res.redirect(`/tickets/${req.params.ticketId}`);
+});
+
 
 module.exports = router
