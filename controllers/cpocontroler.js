@@ -1,10 +1,11 @@
 const express = require("express")
 const Cpo = require("../models/cpo.js");
 const Ticket = require("../models/ticket.js");
+const isSignedIn = require("../middleware/is-signed-in.js")
 const router = express.Router()
 
 //GET form4cpos
-router.get("/new", async (req, res, next) => {
+router.get("/new", isSignedIn, async (req, res, next) => {
     try { 
         res.render("cpos/new.ejs");
     } catch (error){
@@ -12,8 +13,9 @@ router.get("/new", async (req, res, next) => {
     }
 });
 
+
 // GET (index)
-router.get("/", async (req, res) => {
+router.get("/", isSignedIn, async (req, res) => {
   const allCpos = await Cpo.find();
   console.log("GET /cpos works", allCpos); 
   res.render("cpos/index.ejs", { cpos: allCpos });
@@ -55,7 +57,7 @@ router.post("/new", async (req,res,next) => {
 })
 
 // GET show each cpo 
-router.get("/:cpoId", async (req, res) => {
+router.get("/:cpoId", isSignedIn, async (req, res) => {
 const foundCpo = await Cpo.findById(req.params.cpoId);
 const cpoName = req.params.cpoName;
 const tickets = await Ticket.find({ cpoName });
@@ -70,7 +72,7 @@ router.delete("/:cpoId", async (req, res) => {
 });
 
 //GET editing a partner cpo
-router.get("/:cpoId/edit", async (req, res) => {
+router.get("/:cpoId/edit", isSignedIn, async (req, res) => {
   const foundCpo = await Cpo.findById(req.params.cpoId);
   res.render("cpos/edit.ejs", {cpo: foundCpo});
 });

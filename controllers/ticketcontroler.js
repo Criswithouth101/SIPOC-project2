@@ -1,10 +1,13 @@
 const express = require("express")
 const Ticket = require("../models/ticket.js")
 const Cpo = require("../models/cpo.js")
+const isSignedIn = require("../middleware/is-signed-in.js")
+
+
 const router = express.Router()
 
 //GET form4tickets
-router.get("/new", async (req, res, next) => {
+router.get("/new", isSignedIn, async (req, res, next) => {
     try { 
       const cpos = await Cpo.find({})
   res.render("tickets/new.ejs", {cpos});
@@ -14,7 +17,7 @@ router.get("/new", async (req, res, next) => {
 });
 
 // GET /tickets index page
-router.get("/", async (req, res) => {
+router.get("/", isSignedIn, async (req, res) => {
   const allTickets = await Ticket.find();
   console.log("get works", allTickets); 
   res.render("tickets/index.ejs", { tickets: allTickets });
@@ -53,7 +56,7 @@ router.post("/", async (req, res) => {
 });
 
 // GET see each ticket 
-router.get("/:ticketId", async (req, res) => {
+router.get("/:ticketId", isSignedIn, async (req, res) => {
   const foundTicket = await Ticket.findById(req.params.ticketId);
 res.render("tickets/show.ejs", { ticket: foundTicket});
 });
@@ -66,7 +69,7 @@ router.delete("/:ticketId", async (req, res) => {
 });
 
 //GET editing a ticket
-router.get("/:ticketId/edit", async (req, res) => {
+router.get("/:ticketId/edit", isSignedIn, async (req, res) => {
   const foundTicket = await Ticket.findById(req.params.ticketId);
   const cpos = await Cpo.find({});
   res.render("tickets/edit.ejs", {ticket: foundTicket, cpos});
