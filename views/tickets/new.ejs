@@ -3,61 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New support ticket</title>
+    <title>New Support Ticket</title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-    <a href="/tickets/">Back to Tickets</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1>Create a ticket!</h1>
-  <form action="/tickets" method="POST">
-    <label for="escalationId"> Escalation ID:</label>
-    <input type="number" name="escalationId" id="escalationId" />
+    <section class="section">
+      <div class="container">
+        <a class="button is-link mb-4" href="/tickets/">Back to Tickets</a>
 
-    <label for="subject">Subject:</label>
-    <input type="text" name="subject" id="subject" />
+        <h1 class="title">Create a Ticket!</h1>
 
-     <label for="description">Description:</label>
-    <input type="text" name="description" id="description" />
+        <form action="/tickets" method="POST">
+          <div class="field">
+            <label class="label" for="escalationId">Escalation ID</label>
+            <div class="control">
+              <input class="input" type="number" name="escalationId" id="escalationId" placeholder="Enter escalation ID">
+            </div>
+          </div>
 
-    <label for="customerEmail">Customer Email:</label>
-    <input type="text" name="customerEmail" id="customerEmail" />
+          <div class="field">
+            <label class="label" for="subject">Subject</label>
+            <div class="control">
+              <input class="input" type="text" name="subject" id="subject" placeholder="Ticket subject">
+            </div>
+          </div>
 
-    <label for="cpoName">CPO name:</label>
-    <select  name="cpoName" id="cpoName" >
-    <% cpos.forEach(cpo => { %>
-      <option><%= cpo.cpoName %></option> 
-    <% }) %>
-    </select>
+          <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="control">
+              <input class="input" type="text" name="description" id="description" placeholder="Describe the issue">
+            </div>
+          </div>
 
-    <label for="city">City:</label>
-    <input type="text" name="city" id="city" />
+          <div class="field">
+            <label class="label" for="customerEmail">Customer Email</label>
+            <div class="control">
+              <input class="input" type="email" name="customerEmail" id="customerEmail" placeholder="Email address">
+            </div>
+          </div>
 
-    <label for="country">Country:</label>
-    <input type="text" name="country" id="country" />
+          <div class="field">
+            <label class="label" for="cpoName">CPO Name</label>
+            <div class="control">
+              <div class="select">
+                <select name="cpoName" id="cpoName">
+                  <% cpos.forEach(cpo => { %>
+                    <option><%= cpo.cpoName %></option> 
+                  <% }) %>
+                </select>
+              </div>
+            </div>
+          </div>
 
-     <label for="priority">Priority:</label>
-    <input type="number" name="priority" id="priority" />
+          <div class="field">
+            <label class="label" for="city">City</label>
+            <div class="control">
+              <input class="input" type="text" name="city" id="city" placeholder="City name">
+            </div>
+          </div>
 
-    <label for="status">Status:</label>
-    <input type="text" name="status" id="status" />
+          <div class="field">
+            <label class="label" for="country">Country</label>
+            <div class="control">
+              <input class="input" type="text" name="country" id="country" placeholder="Country name">
+            </div>
+          </div>
 
-    <label for="createdAt">Creation date:</label>
-    <input type="datetime" name="createdAt" id="createdAt" />
+          <div class="field">
+            <label class="label" for="priority">Priority</label>
+            <div class="control">
+              <input class="input" type="number" name="priority" id="priority" placeholder="Priority (e.g., 1)">
+            </div>
+          </div>
 
-    <label for="brand">Brand:</label>
-    <input type="text" name="brand" id="brand" />
+          <div class="field">
+            <label class="label" for="status">Status</label>
+            <div class="control">
+              <input class="input" type="text" name="status" id="status" placeholder="Current status">
+            </div>
+          </div>
 
-    <label for="allowedContact">Can the customer be contacted?</label>
-    <input type="checkbox" name="allowedContact" id="allowedContact" />
+          <div class="field">
+            <label class="label" for="createdAt">Creation Date</label>
+            <div class="control">
+              <input class="input" type="datetime-local" name="createdAt" id="createdAt">
+            </div>
+          </div>
 
-    <label for="assignedTo"> Assigned to:</label>
-    <input type="reference" name="Assigned to" id="Assigned to" />
+          <div class="field">
+            <label class="label" for="brand">Brand</label>
+            <div class="control">
+              <input class="input" type="text" name="brand" id="brand" placeholder="Brand name">
+            </div>
+          </div>
 
-    <button type="submit">Add ticket</button>
+          <div class="field">
+            <label class="checkbox">
+              <input type="checkbox" name="allowedContact" id="allowedContact">
+              Can the customer be contacted?
+            </label>
+          </div>
 
-  </form>
-</body>
+          <div class="field">
+            <label class="label" for="assignedTo">Assigned To</label>
+            <div class="control">
+              <input class="input" type="text" name="assignedTo" id="assignedTo" placeholder="Assignee">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">Add Ticket</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
 </html>

@@ -5,33 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= ticket.subject %></title> 
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-    <a href="/tickets/">Back to Tickets</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1><%= ticket.subject %></h1> 
-    <a href="/tickets/<%= ticket._id %>/edit">Edit the ticket "<%= ticket.subject %>"</a>
-    <p><%= ticket.escalationId %></p> 
-    <p><%= ticket.description %></p> 
-    <p><%= ticket.customerEmail %></p>
-    <p><%= ticket.cpos %></p>
-    <p><%= ticket.city %></p>
-    <p><%= ticket.country %></p>
-    <p><%= ticket.priority %></p> 
-    <p><%= ticket.status %></p>
-    <p><%= ticket.createdAt %></p>
-    <p><%= ticket.brand %></p>
-    <p><%= ticket.assignedTo %></p>
-    
- <% if (ticket.allowedContact) { %>
-    <p>This customer has accepted to be contacted again</p>
-  <% } else { %>
-    <p>Do no contact the customer.</p>
-  <% } %>
-  <form action="/tickets/<%=ticket._id%>?_method=DELETE" method="POST">
-  <button type="submit">Delete ticket</button>
-</form>
+    <section class="section">
+      <div class="container">
+
+        <a class="button is-link mb-4" href="/tickets/">Back to Tickets</a>
+
+        <h1 class="title"><%= ticket.subject %></h1> 
+
+        <a class="button is-warning mb-4" href="/tickets/<%= ticket._id %>/edit">
+          Edit the ticket "<%= ticket.subject %>"
+        </a>
+
+        <div class="box">
+          <p><strong>Escalation ID:</strong> <%= ticket.escalationId %></p>
+          <p><strong>Description:</strong> <%= ticket.description %></p>
+          <p><strong>Customer Email:</strong> <%= ticket.customerEmail %></p>
+          <p><strong>CPO:</strong> <%= ticket.cpos %></p>
+          <p><strong>City:</strong> <%= ticket.city %></p>
+          <p><strong>Country:</strong> <%= ticket.country %></p>
+          <p><strong>Priority:</strong> <%= ticket.priority %></p>
+          <p><strong>Status:</strong> <%= ticket.status %></p>
+          <p><strong>Created At:</strong> <%= ticket.createdAt %></p>
+          <p><strong>Brand:</strong> <%= ticket.brand %></p>
+          <p><strong>Assigned To:</strong> <%= ticket.assignedTo %></p>
+
+          <% if (ticket.allowedContact) { %>
+            <p class="has-text-success">This customer has accepted to be contacted again.</p>
+          <% } else { %>
+            <p class="has-text-danger">Do not contact the customer.</p>
+          <% } %>
+        </div>
+
+        <form action="/tickets/<%= ticket._id %>?_method=DELETE" method="POST">
+          <button class="button is-danger" type="submit">Delete Ticket</button>
+        </form>
+
+      </div>
+    </section>
   </body>
 </html>
+

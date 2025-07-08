@@ -3,39 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= cpo.cpoName %></title> 
+    <title><%= cpo.cpoName %></title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-    <a href="/cpos/">Back to CPOs</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1><%= cpo.cpoName %></h1> 
-    <a href="/cpos/<%= cpo._id %>/edit">Edit partner information "<%= cpo.cpoName %>"</a>
-    <p><%= cpo.contactEmail %></p> 
-    <% if (cpo.hasSla) { %>
-    <p>This partner has an active SLA</p>
-  <% } else { %>
-    <p>This partner doesn't have an SLA.</p>
-  <% } %>
-    <p><%= cpo.city %></p>
-    <p><%= cpo.country %></p>
-    <p>Tickets tagged to <%= cpo.cpoName %></p>
-    <ul>
-     <% if (tickets.length > 0) { %>
-      <% tickets.forEach(ticket => { %>
-        <li>
-          <strong><%= ticket.subject %></strong> — <%= ticket.status %><br>
-          <small><%= ticket.description %></small>
-        </li>
-      <% }) %>
-    <% } else { %>
-      <li>No tickets found for this CPO.</li>
-    <% } %>
-    </ul>
-    <form action="/cpos/<%=cpo._id%>?_method=DELETE" method="POST">
-  <button type="submit">Delete CPO Partner</button>
-</form>
+    <section class="section">
+      <div class="container">
+
+        <a class="button is-link mb-4" href="/cpos/">Back to CPOs</a>
+
+        <h1 class="title"><%= cpo.cpoName %></h1>
+
+        <a class="button is-warning mb-4" href="/cpos/<%= cpo._id %>/edit">
+          Edit Partner Information
+        </a>
+
+        <div class="content">
+          <p><strong>Contact Email:</strong> <%= cpo.contactEmail %></p>
+          <p>
+            <strong>SLA Status:</strong>
+            <% if (cpo.hasSla) { %>
+              This partner has an active SLA.
+            <% } else { %>
+              This partner doesn't have an SLA.
+            <% } %>
+          </p>
+          <p><strong>City:</strong> <%= cpo.city %></p>
+          <p><strong>Country:</strong> <%= cpo.country %></p>
+        </div>
+
+        <h2 class="subtitle mt-5">Tickets tagged to <%= cpo.cpoName %>:</h2>
+        <ul>
+          <% if (tickets.length > 0) { %>
+            <% tickets.forEach(ticket => { %>
+              <li class="mb-3">
+                <strong><%= ticket.subject %></strong> — <%= ticket.status %><br>
+                <small><%= ticket.description %></small>
+              </li>
+            <% }) %>
+          <% } else { %>
+            <li>No tickets found for this CPO.</li>
+          <% } %>
+        </ul>
+
+        <form action="/cpos/<%=cpo._id%>?_method=DELETE" method="POST" class="mt-4">
+          <button class="button is-danger" type="submit">Delete CPO Partner</button>
+        </form>
+      </div>
+    </section>
   </body>
 </html>
+

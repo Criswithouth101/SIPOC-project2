@@ -3,62 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New support ticket</title>
+    <title>Edit Support Ticket</title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-    <a href="/tickets/">Back to Tickets</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1>Editing the ticket</h1>
-  <form action="/tickets/<%=ticket._id%>?_method=PUT" method="POST">
+    <section class="section">
+      <div class="container">
+        <a class="button is-link mb-4" href="/tickets/">Back to Tickets</a>
 
-    <label for="escalationId"> Escalation ID:</label>
-    <input type="number" name="escalationId" value="<%= ticket.escalationId %>" />
+        <h1 class="title">Editing the Ticket</h1>
 
-    <label for="subject">Subject:</label>
-    <input type="text" name="subject" value="<%= ticket.subject %>" />
+        <form action="/tickets/<%= ticket._id %>?_method=PUT" method="POST">
+          
+          <div class="field">
+            <label class="label">Escalation ID:</label>
+            <div class="control">
+              <input class="input" type="number" name="escalationId" value="<%= ticket.escalationId %>">
+            </div>
+          </div>
 
-     <label for="description">Description:</label>
-    <input type="text" name="description" value="<%= ticket.description %>" />
+          <div class="field">
+            <label class="label">Subject:</label>
+            <div class="control">
+              <input class="input" type="text" name="subject" value="<%= ticket.subject %>">
+            </div>
+          </div>
 
-    <label for="customerEmail">Customer Email:</label>
-    <input type="text" name="customerEmail" value="<%= ticket.customerEmail %>" />
+          <div class="field">
+            <label class="label">Description:</label>
+            <div class="control">
+              <input class="input" type="text" name="description" value="<%= ticket.description %>">
+            </div>
+          </div>
 
-    <label for="cpoName">CPO name:</label>
-    <select  name="cpoName" id="cpoName" >
-    <% cpos.forEach(cpo => { %>
-      <option><%= cpo.cpoName %></option> 
-    <% }) %>
-    </select>
+          <div class="field">
+            <label class="label">Customer Email:</label>
+            <div class="control">
+              <input class="input" type="text" name="customerEmail" value="<%= ticket.customerEmail %>">
+            </div>
+          </div>
 
-    <label for="city">City:</label>
-    <input type="text" name="city" value="<%= ticket.city %>" />
+          <div class="field">
+            <label class="label">CPO Name:</label>
+            <div class="control">
+              <div class="select">
+                <select name="cpoName" id="cpoName">
+                  <% cpos.forEach(cpo => { %>
+                    <option <%= cpo.cpoName === ticket.cpoName ? 'selected' : '' %>><%= cpo.cpoName %></option>
+                  <% }) %>
+                </select>
+              </div>
+            </div>
+          </div>
 
-    <label for="country">Country:</label>
-    <input type="text" name="country" value="<%= ticket.country %>" />
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input class="input" type="text" name="city" value="<%= ticket.city %>">
+            </div>
+          </div>
 
-     <label for="priority">Priority:</label>
-    <input type="number" name="priority" value="<%= ticket.priority %>" />
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input class="input" type="text" name="country" value="<%= ticket.country %>">
+            </div>
+          </div>
 
-    <label for="status">Status:</label>
-    <input type="text" name="status" value="<%= ticket.status %>" />
+          <div class="field">
+            <label class="label">Priority:</label>
+            <div class="control">
+              <input class="input" type="number" name="priority" value="<%= ticket.priority %>">
+            </div>
+          </div>
 
-    <label for="createdAt">Creation date:</label>
-    <input type="datetime" name="createdAt" value="<%= ticket.createdAt %>" />
+          <div class="field">
+            <label class="label">Status:</label>
+            <div class="control">
+              <input class="input" type="text" name="status" value="<%= ticket.status %>">
+            </div>
+          </div>
 
-    <label for="brand">Brand:</label>
-    <input type="text" name="brand" value="<%= ticket.brand %>" />
+          <div class="field">
+            <label class="label">Creation Date:</label>
+            <div class="control">
+              <input class="input" type="datetime" name="createdAt" value="<%= ticket.createdAt %>">
+            </div>
+          </div>
 
-    <label for="allowedContact">Can the customer be contacted?</label>
-    <input type="checkbox" name="allowedContact" <% if (ticket.allowedContact) { %>checked<% } %> />
+          <div class="field">
+            <label class="label">Brand:</label>
+            <div class="control">
+              <input class="input" type="text" name="brand" value="<%= ticket.brand %>">
+            </div>
+          </div>
 
-    <label for="assignedTo"> Assigned to:</label>
-    <input type="reference" name="Assigned to" value="<%= ticket.assignedTo %>" />
+          <div class="field">
+            <label class="checkbox">
+              <input type="checkbox" name="allowedContact" <% if (ticket.allowedContact) { %>checked<% } %> >
+              Can the customer be contacted?
+            </label>
+          </div>
 
-    <button type="submit">Save edited ticket</button>
+          <div class="field">
+            <label class="label">Assigned To:</label>
+            <div class="control">
+              <input class="input" type="text" name="assignedTo" value="<%= ticket.assignedTo %>">
+            </div>
+          </div>
 
-  </form>
-</body>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">Save Edited Ticket</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </body>
 </html>

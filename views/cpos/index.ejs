@@ -5,20 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CPO Index</title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-     <a href="/tickets">Browse Tickets</a>
-      <a href="/tickets/new">Add New Ticket</a>
-      <a href="/cpos/">List of CPO partners</a>
-      <a href="/cpos/new">Add New CPO Partner</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1>All CPOs partners listed</h1>
-  <ul>
-    <% cpos.forEach(cpo => { %>
-      <li><a href="/cpos/<%= cpo._id %>"><%= cpo.cpoName %></a></li>
-    <% }); %>
-  </ul>
+    
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/tickets">Browse Tickets</a>
+          <a class="navbar-item" href="/tickets/new">Add New Ticket</a>
+          <a class="navbar-item" href="/cpos/">List of CPO Partners</a>
+          <a class="navbar-item" href="/cpos/new">Add New CPO Partner</a>
+        </div>
+      </div>
+    </nav>
+
+   
+    <section class="section">
+      <div class="container">
+        <h1 class="title">All CPO Partners Listed</h1>
+        <ul>
+          <% cpos.forEach(cpo => { %>
+            <li>
+              <a href="/cpos/<%= cpo._id %>" class="has-text-link">
+                <%= cpo.cpoName %>
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
   </body>
 </html>

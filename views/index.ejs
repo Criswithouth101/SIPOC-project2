@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,30 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIPOC</title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <% if (user) { %>
+            <a class="navbar-item" href="/tickets">Browse Tickets</a>
+            <a class="navbar-item" href="/tickets/new">Add New Ticket</a>
+            <a class="navbar-item" href="/cpos/">List of CPO Partners</a>
+            <a class="navbar-item" href="/cpos/new">Add New CPO Partner</a>
+            <a class="navbar-item" href="/auth/sign-out">Sign out</a>
+          <% } else { %>
+            <a class="navbar-item" href="/auth/sign-up">Sign Up</a>
+            <a class="navbar-item" href="/auth/sign-in">Sign In</a>
+          <% } %>
+          <a class="navbar-item" href="/vip-lounge">VIP Lounge</a>
+        </div>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="container">
         <% if (user) { %>
-    <h1>Welcome to the SIPOC, <%= user.username %>!</h1>
-      <p><a href="/tickets">Browse Tickets</a></p>
-      <p><a href="/tickets/new">Add New Ticket</a></p>
-      <p><a href="/cpos/">List of CPO partners</a></p>
-      <p><a href="/cpos/new">Add New CPO Partner</a></p>
-       <p>
-        <a href="/auth/sign-out">Sign out</a>
-      </p>
-    <% } else { %>
-    <h1>Welcome to the app, guest.</h1>
-    <p>
-      <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
-    </p>
-    <% } %>
-    <p>(Single Point of Contact)</p>
-     <p>Support tickets tracker & performance monitor</p>
+          <h1 class="title">Welcome to SIPOC, <%= user.username %>!</h1>
+        <% } else { %>
+          <h1 class="title">Welcome to the app, guest.</h1>
+        <% } %>
 
-     <p><a href="/vip-lounge">Get into the VIP Users Only lounge!</a></p>
-
+        <p class="subtitle">(Single Point of Contact)</p>
+        <p>Support tickets tracker & performance monitor</p>
+      </div>
+    </section>
   </body>
 </html>

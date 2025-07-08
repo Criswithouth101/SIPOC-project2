@@ -5,31 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New CPO (Charging Point Operator)</title>
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
->
-    <a href="/cpos/">Back to CPOs</a>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
   </head>
   <body>
-    <h1>Add a new partner!</h1>
-  <form action="/cpos" method="POST">
-    <label for="cpoName"> CPO Name:</label>
-    <input type="text" name="cpoName" id="cpoName" />
+    <section class="section">
+      <div class="container">
+        <a class="button is-link mb-4" href="/cpos/">Back to CPOs</a>
 
-    <label for="contactEmail">Contact Email:</label>
-    <input type="text" name="contactEmail" id="contactEmail" />
+        <h1 class="title">Add a New Partner</h1>
 
-    <label for="hasSla">Does this partner has an SLA?</label>
-    <input type="checkbox" name="hasSla" id="hasSla" />
+        <form action="/cpos" method="POST">
+          <div class="field">
+            <label class="label">CPO Name:</label>
+            <div class="control">
+              <input class="input" type="text" name="cpoName" id="cpoName">
+            </div>
+          </div>
 
-    <label for="city">City:</label>
-    <input type="text" name="city" id="city" />
+          <div class="field">
+            <label class="label">Contact Email:</label>
+            <div class="control">
+              <input class="input" type="text" name="contactEmail" id="contactEmail">
+            </div>
+          </div>
 
-    <label for="country">Country:</label>
-    <input type="text" name="country" id="country" />
+          <div class="field">
+            <label class="checkbox">
+              <input type="checkbox" name="hasSla" id="hasSla">
+              Does this partner have an SLA?
+            </label>
+          </div>
 
-    <button type="submit">Add partner</button>
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input class="input" type="text" name="city" id="city">
+            </div>
+          </div>
 
-  </form>
-</body>
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input class="input" type="text" name="country" id="country">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">Add Partner</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
 </html>

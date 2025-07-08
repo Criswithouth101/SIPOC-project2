@@ -15,8 +15,8 @@ const ticketSchema = new mongoose.Schema({
   createdAt: Date,
   brand: String,
   allowedContact: Boolean,
-  assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  /*createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }*/
+  assignedTo: String
+  
 });
 
 const Ticket = mongoose.model("Ticket", ticketSchema); 

@@ -1,4 +1,5 @@
 const session = require('express-session');
+const passUserToView = require("./middleware/pass-user-to-view.js");
 const MongoStore = require("connect-mongo");
 const dotenv = require('dotenv'); 
 dotenv.config(); 
@@ -7,6 +8,7 @@ const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require("path");
+
 
 const cpocontroller = require('./controllers/cpocontroler.js');
 const ticketcontroler = require('./controllers/ticketcontroler.js');
@@ -39,6 +41,7 @@ app.use(
     }),
   })
 );
+app.use(passUserToView);
 
 app.use(methodOverride("_method"));
 app.use(morgan("dev")); 
@@ -50,17 +53,13 @@ app.use("/tickets", ticketcontroler);
 
 // GET welcome page/
 app.get("/", async (req, res) => {
-  res.render("index.ejs", {
-    user: req.session.user,
-  });
+  res.render("index.ejs");
 });
 
 //VIP thing
 app.get("/vip-lounge", isSignedIn, (req, res) => {
   res.send(`Welcome to the party ${req.session.user.username}.`);
 });
-
-
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
