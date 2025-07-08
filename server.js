@@ -56,11 +56,6 @@ app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
-//VIP thing
-app.get("/vip-lounge", isSignedIn, (req, res) => {
-  res.send(`Welcome to the party ${req.session.user.username}.`);
-});
-
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
