@@ -18,10 +18,19 @@ router.get("/new", isSignedIn, async (req, res, next) => {
 
 // GET /tickets index page
 router.get("/", isSignedIn, async (req, res) => {
-  const allTickets = await Ticket.find();
-  console.log("get works", allTickets); 
-  res.render("tickets/index.ejs", { tickets: allTickets });
+  const { status } = req.query;
+  let tickets;
+
+  if (status && status.trim() !== '') {
+    tickets = await Ticket.find({ status });  
+  } else {
+    tickets = await Ticket.find();  
+  }
+
+  console.log("Fetched tickets:", tickets);  
+  res.render("tickets/index.ejs", { tickets, query: req.query });  
 });
+
 
 // POST New tickets
 router.post("/", async (req, res) => {

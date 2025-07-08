@@ -23,6 +23,25 @@
     <section class="section">
       <div class="container">
         <h1 class="title">All Tickets</h1>
+        <form action="/tickets" method="GET" class="mb-5">
+  <div class="field has-addons">
+    <div class="control">
+      <div class="select">
+        <select name="status">
+          <option value="">All Statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+          <option value="Closed">Closed</option>
+        
+        </select>
+      </div>
+    </div>
+    <div class="control">
+      <button type="submit" class="button is-link">Filter</button>
+    </div>
+  </div>
+</form>
         <ul>
           <% tickets.forEach(ticket => { %>
             <li>
